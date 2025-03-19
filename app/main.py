@@ -1,16 +1,19 @@
-import socket  # noqa: F401
+import socket
+import struct
 
 
 def main():
-    # You can use print statements as follows for debugging,
-    # they'll be visible when running tests.
-    print("Logs from your program will appear here!")
-
-    # Uncomment this to pass the first stage
-    #
     server = socket.create_server(("localhost", 9092), reuse_port=True)
-    server.accept() # wait for client
+    conn, _ = server.accept() 
 
+    _ = conn.recv(1024)
+    
+    message_size = struct.pack('>i', 0)  # 4 bytes (big-endian) for message_size
+    correlation_id = struct.pack('>i', 7)  # 4 bytes (big-endian) for correlation_id
+    response = message_size + correlation_id
+    
+    conn.sendall(response)  
+    conn.close()
 
 if __name__ == "__main__":
     main()
