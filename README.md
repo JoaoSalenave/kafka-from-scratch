@@ -2,14 +2,14 @@
 
 This project is part of the Codecrafters challenge where I am building a simplified version of a Kafka broker from scratch using **Python**.
 
-## 🛠️ Tech Stack
+##  Tech Stack:
 
 - Python 3.12
 - TCP Sockets (low-level networking)
 - Kafka wire protocol concepts
 - Basic producer/consumer architecture
 
-## 🚀 What I am building
+##  Main Objective:
 
 A basic Kafka-like message broker that:
 - Accepts connections from producers and consumers over TCP.
@@ -17,14 +17,14 @@ A basic Kafka-like message broker that:
 - Processes binary messages following the Kafka wire protocol.
 - Manages internal message queues.
 
-## 🎯 Key Learning Outcomes
+##  Key Learning Outcomes:
 
 - Low-level networking with TCP sockets
 - Kafka internals & message streaming concepts
 - Basics of distributed systems: producers, consumers, queues
 - Wire protocol design & implementation
 
-## 🔄 Future improvements
+##  Future improvements:
 - Rebuild in Go for performance comparison.
 - Implement multi-threaded queue management.
 - Deploy a distributed version with Docker Compose.
