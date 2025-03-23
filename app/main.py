@@ -14,27 +14,32 @@ def main():
         return
 
     offset = 4
-    request_api_key = struct.unpack('>h', data[offset:offset + 2])[0]
+    _ = struct.unpack('>h', data[offset:offset + 2])[0]
     offset += 2
 
-    request_api_version = struct.unpack('>h', data[offset:offset + 2])[0]
+    _ = struct.unpack('>h', data[offset:offset + 2])[0]
     offset += 2
 
     correlation_id = struct.unpack('>i', data[offset:offset + 4])[0]
     
-    print(f"Request API version: {request_api_version}, correlation_id: {correlation_id}")
+    throttle_time_ms = 0
+    error_code = 0
+    api_keys_count = 1
+    api_entry = struct.pack('>h', 18) + struct.pack('>h', 0) + struct.pack('>h', 4)
     
-    if request_api_version < 0 or request_api_version > 4:
-        error_code = 35  
-    else:
-        error_code = 0  
-
-    message_size = 0  
-    response = (
-        struct.pack('>i', message_size) +
-        struct.pack('>i', correlation_id) +
-        struct.pack('>h', error_code)
+    response_body = (
+        struct.pack('>i', throttle_time_ms) +
+        struct.pack('>h', error_code) +
+        struct.pack('>i', api_keys_count) +
+        api_entry
     )
+    
+    response_header = struct.pack('>i', correlation_id)
+    
+    message_length = 20
+    response_message_length = struct.pack('>i', message_length)
+    
+    response = response_message_length + response_header + response_body
     
     conn.sendall(response)
     conn.close()
