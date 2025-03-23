@@ -16,6 +16,7 @@ def main():
         conn.close()
         return
 
+
     offset = 4
     _ = struct.unpack('>h', data[offset:offset + 2])[0]
     offset += 2
@@ -27,13 +28,17 @@ def main():
 
 
     response_header = struct.pack('>i', correlation_id)
-
+    
+    throttle_time_ms = struct.pack('>i', 0)
+    
     error_code = struct.pack('>h', 0)
+    
     api_keys_array_length = encode_varint(2)
     api_entry = struct.pack('>hhh', 18, 0, 4)
+
     tagged_fields = encode_varint(0)
     
-    response_body = error_code + api_keys_array_length + api_entry + tagged_fields
+    response_body = throttle_time_ms + error_code + api_keys_array_length + api_entry + tagged_fields
 
     message_length = 4 + len(response_body)
     response_message_length = struct.pack('>i', message_length)
