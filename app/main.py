@@ -17,10 +17,10 @@ def main():
         return
 
     offset = 4
-    _ = struct.unpack('>h', data[offset:offset + 2])[0]
+    first_response = struct.unpack('>h', data[offset:offset + 2])[0]
     offset += 2
 
-    _ = struct.unpack('>h', data[offset:offset + 2])[0]
+    second_response = struct.unpack('>h', data[offset:offset + 2])[0]
     offset += 2
 
     correlation_id = struct.unpack('>i', data[offset:offset + 4])[0]
