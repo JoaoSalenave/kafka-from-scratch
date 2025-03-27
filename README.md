@@ -24,8 +24,4 @@ A basic Kafka-like message broker that:
 - Basics of distributed systems: producers, consumers, queues
 - Wire protocol design & implementation
 
-##  Future improvements:
-- Rebuild in Go for performance comparison.
-- Implement multi-threaded queue management.
-- Deploy a distributed version with Docker Compose.
 
