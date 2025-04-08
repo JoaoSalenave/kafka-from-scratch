@@ -5,7 +5,7 @@ from ..utils.logger import get_logger
 
 from .Header.request_header import RequestHeader
 from .abstract_request import AbstractRequest
-from .ApiVersion.api_version_request import ApiVersionsRequest
+from .ApiVersion.api_version_request import ApiVersionRequest
 from .DescribeTopic.describe_topic_request import DescribeTopicPartitionsRequest
 from .Fetch.fetch_request import FetchRequest
 
@@ -28,7 +28,7 @@ class RequestFactory:
         request_class : type[AbstractRequest]
         match request_header.api_key:
             case ApiKey.API_VERSIONS:
-                request_class = ApiVersionsRequest
+                request_class = ApiVersionRequest
                 cls._logger.debug("Processing API_VERSIONS request")
             case ApiKey.DESCRIBE_TOPIC_PARTITIONS:
                 request_class = DescribeTopicPartitionsRequest

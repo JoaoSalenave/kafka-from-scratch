@@ -5,7 +5,7 @@ from io import BytesIO
 
 from ..abstract_response import AbstractResponse
 from ...utils.constants import ErrorCode, ApiKey
-from .api_version_request import ApiVersionsRequest
+from .api_version_request import ApiVersionRequest
 from ...utils.converter import(
     encode_compact_array,
     encode_int16,
@@ -14,7 +14,7 @@ from ...utils.converter import(
 )
 
 @dataclass
-class ApiVersionsResponseApiKey:
+class ApiVersionResponseApiKey:
     api_key: ApiKey
     min_version: int
     max_version: int
@@ -29,9 +29,9 @@ class ApiVersionsResponseApiKey:
         return buffer.getvalue()
 
 @dataclass
-class ApiVersionsResponse(AbstractResponse):
+class ApiVersionResponse(AbstractResponse):
     error_code: ErrorCode = ErrorCode.NO_ERROR
-    api_keys: list[ApiVersionsResponseApiKey] = field(default_factory=list)
+    api_keys: list[ApiVersionResponseApiKey] = field(default_factory=list)
     throttle_time: int = 0
     
     @classmethod
@@ -44,9 +44,9 @@ class ApiVersionsResponse(AbstractResponse):
         return {
             "error_code": error_code,
             "api_keys": [
-                ApiVersionsResponseApiKey(api_key= ApiKey.API_VERSIONS, min_version=0, max_version=4),
-                ApiVersionsResponseApiKey(api_key= ApiKey.DESCRIBE_TOPIC_PARTITIONS, min_version=0, max_version=0),
-                ApiVersionsResponseApiKey(api_key= ApiKey.FETCH, min_version=0, max_version=16),
+                ApiVersionResponseApiKey(api_key= ApiKey.API_VERSIONS, min_version=0, max_version=4),
+                ApiVersionResponseApiKey(api_key= ApiKey.DESCRIBE_TOPIC_PARTITIONS, min_version=0, max_version=0),
+                ApiVersionResponseApiKey(api_key= ApiKey.FETCH, min_version=0, max_version=16),
             ],
             "throttle_time": 0,
         }

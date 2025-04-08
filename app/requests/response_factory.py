@@ -4,7 +4,7 @@ from ..utils.logger import get_logger
 from .abstract_response import AbstractResponse
 from .Header.response_header import ResponseHeader
 from typing import Dict, Any
-from .ApiVersion.api_version_response import ApiVersionsResponse
+from .ApiVersion.api_version_response import ApiVersionResponse
 from .DescribeTopic.describe_topic_response import DescribeTopicPartitionsResponse
 from .Fetch.fetch_response import FetchResponse
 
@@ -22,7 +22,7 @@ class ResponseFactory:
 
         match response_header.api_key:
             case ApiKey.API_VERSIONS:
-                response_class = ApiVersionsResponse
+                response_class = ApiVersionResponse
                 cls._logger.debug("Creating API_VERSIONS response")
             case ApiKey.DESCRIBE_TOPIC_PARTITIONS:
                 response_class = DescribeTopicPartitionsResponse

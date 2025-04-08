@@ -11,7 +11,7 @@ from ...utils.converter import(
 
 
 @dataclass
-class ApiVersionsRequest(AbstractRequest):
+class ApiVersionRequest(AbstractRequest):
     client_software_name: str
     client_software_version: str
 
