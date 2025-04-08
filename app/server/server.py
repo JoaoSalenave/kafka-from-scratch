@@ -4,8 +4,8 @@ from io import BytesIO
 from ..requests.request_factory import RequestFactory
 from ..requests.response_factory import ResponseFactory
 from ..utils.logger import get_logger
+
 class KafkaServer:
-    """Server to handle Kafka client connections."""
     def __init__(self, host: str, port: int):
         self.host = host
         self.port = port
@@ -46,7 +46,6 @@ class KafkaServer:
                     self.logger.debug(f"Sent {len(encoded_response)} bytes to client {client_id}")
                 except Exception as e:
                     self.logger.error(f"Error processing request from client {client_id}: {str(e)}")
-                    # Continue serving other requests even if one fails
         except Exception as e:
             self.logger.error(f"Error handling client {client_id}: {str(e)}")
         finally:
