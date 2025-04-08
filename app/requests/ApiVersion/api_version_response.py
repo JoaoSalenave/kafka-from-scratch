@@ -5,7 +5,7 @@ from io import BytesIO
 
 from ..abstract_response import AbstractResponse
 from ...utils.constants import ErrorCode, ApiKey
-from .api_version_request import ApiVersionRequest
+from .api_version_request import ApiVersionsRequest
 from ...utils.converter import(
     encode_compact_array,
     encode_int16,
