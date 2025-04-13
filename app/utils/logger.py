@@ -64,5 +64,4 @@ class KafkaLogger:
         return logger
 
 def get_logger(name: str) -> logging.Logger:
-
     return KafkaLogger.get_logger(name)

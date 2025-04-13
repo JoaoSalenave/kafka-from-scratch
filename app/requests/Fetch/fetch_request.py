@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Dict, BinaryIO
+from typing import BinaryIO
 from uuid import UUID
 
 from ..abstract_request import AbstractRequest
@@ -16,8 +16,8 @@ from ...utils.converter import(
 
 @dataclass
 class FetchRequestPartition:
-    partition: int # 32
-    current_leader_epoch: int # 32
+    partition: int 
+    current_leader_epoch: int 
     fetch_offset: int # 64
     last_fetched_epoch: int # 32
     log_start_offset: int # 64
